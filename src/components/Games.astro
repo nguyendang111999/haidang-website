@@ -1,0 +1,94 @@
+---
+import GameCard from "~/components/GameCard.astro";
+import type { Game } from "~/data/game";
+import gamesData from "~/data/games.generated.json";
+
+const games = gamesData as Game[];
+
+// Aggregate stats for the strip.
+const totalMinInstalls = games.reduce((sum, g) => sum + (g.minInstalls ?? 0), 0);
+const rated = games.filter((g) => typeof g.score === "number") as (Game & { score: number })[];
+const avgScore = rated.length
+  ? rated.reduce((sum, g) => sum + g.score, 0) / rated.length
+  : null;
+
+function formatInstalls(n: number): string {
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1)}B+`;
+  if (n >= 1_000_000) return `${Math.floor(n / 1_000_000)}M+`;
+  if (n >= 1_000) return `${Math.floor(n / 1_000)}K+`;
+  return `${n}+`;
+}
+
+const hasGames = games.length > 0;
+---
+
+<section id="games" class="mx-auto max-w-6xl scroll-mt-20 px-6 py-24 sm:py-28">
+  <header class="reveal mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <p class="font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.2em] text-[color:var(--color-fg-subtle)]">
+        Section 01
+      </p>
+      <h2 class="mt-2 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-[color:var(--color-fg)] sm:text-5xl">
+        Games
+      </h2>
+      <p class="mt-3 max-w-xl text-base text-[color:var(--color-fg-muted)]">
+        {hasGames
+          ? `${games.length} title${games.length === 1 ? "" : "s"} shipped on Google Play.`
+          : "Games will appear here once games.source.ts is populated and games:fetch has run."}
+      </p>
+    </div>
+
+    {
+      hasGames && (
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[color:var(--color-fg-muted)]">
+          {totalMinInstalls > 0 && (
+            <li>
+              <span class="text-[color:var(--color-fg)]">
+                {formatInstalls(totalMinInstalls)}
+              </span>{" "}
+              installs
+            </li>
+          )}
+          <li>
+            <span class="text-[color:var(--color-fg)]">{games.length}</span>{" "}
+            titles
+          </li>
+          {avgScore !== null && (
+            <li>
+              <span class="text-[color:var(--color-fg)]">
+                {avgScore.toFixed(1)}
+              </span>{" "}
+              avg rating
+            </li>
+          )}
+        </ul>
+      )
+    }
+  </header>
+
+  {
+    hasGames ? (
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {games.map((game) => (
+          <div class="reveal">
+            <GameCard game={game} />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="reveal rounded-2xl border border-dashed border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] p-10 text-center">
+        <p class="text-[color:var(--color-fg-muted)]">
+          No games yet. Add app IDs to{" "}
+          <code class="rounded bg-[color:var(--color-surface-2)] px-2 py-0.5 text-[color:var(--color-fg)]">
+            src/data/games.source.ts
+          </code>{" "}
+          and run{" "}
+          <code class="rounded bg-[color:var(--color-surface-2)] px-2 py-0.5 text-[color:var(--color-fg)]">
+            npm run games:fetch
+          </code>
+          .
+        </p>
+      </div>
+    )
+  }
+</section>

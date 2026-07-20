@@ -1,0 +1,199 @@
+---
+import Icon from "~/components/Icon.astro";
+import { profile } from "~/data/profile";
+import { contact } from "~/data/contact";
+import type { Game } from "~/data/game";
+import gamesData from "~/data/games.generated.json";
+
+const games = gamesData as Game[];
+const totalMinInstalls = games.reduce((sum, g) => sum + (g.minInstalls ?? 0), 0);
+
+function formatInstalls(n: number): string {
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1)}B+`;
+  if (n >= 1_000_000) return `${Math.floor(n / 1_000_000)}M+`;
+  if (n >= 1_000) return `${Math.floor(n / 1_000)}K+`;
+  return `${n}+`;
+}
+
+/**
+ * Skills grouped by category. Edit freely.
+ */
+const skillGroups: { title: string; items: string[] }[] = [
+  {
+    title: "Engine & Language",
+    items: ["Unity", "C#", "Shader Graph", "DOTween"],
+  },
+  {
+    title: "Mobile & Live-ops",
+    items: ["Firebase", "GameAnalytics", "Remote Config", "A/B testing"],
+  },
+  {
+    title: "Ads & Monetization",
+    items: ["AppLovin MAX", "IronSource", "Unity Ads", "IAP"],
+  },
+];
+
+const quickFacts: { label: string; value: string }[] = [];
+if (profile.yearsOnUnity > 0) {
+  quickFacts.push({ label: "Unity", value: `${profile.yearsOnUnity}+ yrs` });
+}
+if (games.length > 0) {
+  quickFacts.push({ label: "Games shipped", value: `${games.length}` });
+}
+if (totalMinInstalls > 0) {
+  quickFacts.push({ label: "Total installs", value: formatInstalls(totalMinInstalls) });
+}
+if (profile.location) {
+  quickFacts.push({ label: "Location", value: profile.location });
+}
+if (profile.availability) {
+  quickFacts.push({ label: "Availability", value: profile.availability });
+}
+
+const contactLinks: {
+  key: keyof typeof contact;
+  label: string;
+  href: string;
+  icon: "mail" | "linkedin" | "github" | "itchio";
+}[] = [
+  { key: "email", label: "Email", href: contact.email ? `mailto:${contact.email}` : "", icon: "mail" },
+  { key: "linkedin", label: "LinkedIn", href: contact.linkedin, icon: "linkedin" },
+  { key: "github", label: "GitHub", href: contact.github, icon: "github" },
+  { key: "itchio", label: "itch.io", href: contact.itchio, icon: "itchio" },
+].filter((l) => !!l.href) as typeof contactLinks;
+
+const initials = profile.name
+  .split(/\s+/)
+  .map((w) => w[0]?.toUpperCase() ?? "")
+  .slice(0, 2)
+  .join("");
+---
+
+<section id="about" class="mx-auto max-w-6xl scroll-mt-20 px-6 py-24 sm:py-28">
+  <header class="reveal mb-12">
+    <p class="font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.2em] text-[color:var(--color-fg-subtle)]">
+      Section 02
+    </p>
+    <h2 class="mt-2 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-[color:var(--color-fg)] sm:text-5xl">
+      Personal Information
+    </h2>
+  </header>
+
+  <!-- ============ Bio subsection ============ -->
+  <div class="reveal grid grid-cols-1 gap-10 md:grid-cols-[240px_1fr]">
+    <div class="flex flex-col items-start gap-4">
+      <div
+        class="flex h-40 w-40 items-center justify-center rounded-full border border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] font-[family-name:var(--font-display)] text-4xl font-semibold text-[color:var(--color-fg-muted)]"
+        aria-label={`Avatar placeholder for ${profile.name}`}
+      >
+        {initials || "?"}
+      </div>
+      <div>
+        <p class="font-[family-name:var(--font-display)] text-xl font-semibold text-[color:var(--color-fg)]">
+          {profile.name}
+        </p>
+        <p class="text-sm text-[color:var(--color-fg-muted)]">{profile.title}</p>
+        {profile.location && (
+          <p class="text-sm text-[color:var(--color-fg-subtle)]">{profile.location}</p>
+        )}
+      </div>
+    </div>
+    <div>
+      <div class="space-y-4 text-[color:var(--color-fg-muted)] leading-relaxed">
+        {profile.bio.map((para) => <p>{para}</p>)}
+      </div>
+
+      {
+        quickFacts.length > 0 && (
+          <dl class="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-[color:var(--color-border)] pt-6 sm:grid-cols-3 md:grid-cols-5">
+            {quickFacts.map((fact) => (
+              <div>
+                <dt class="text-xs uppercase tracking-wider text-[color:var(--color-fg-subtle)]">
+                  {fact.label}
+                </dt>
+                <dd class="mt-1 text-sm font-medium text-[color:var(--color-fg)]">
+                  {fact.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </div>
+  </div>
+
+  <hr class="my-16 border-t border-[color:var(--color-border)]" />
+
+  <!-- ============ Skills subsection ============ -->
+  <div id="skills" class="reveal scroll-mt-20">
+    <h3 class="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[color:var(--color-fg)]">
+      Skills & Tools
+    </h3>
+    <p class="mt-2 max-w-xl text-sm text-[color:var(--color-fg-muted)]">
+      What I use day-to-day when shipping mobile games.
+    </p>
+
+    <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+      {
+        skillGroups.map((group) => (
+          <div>
+            <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[color:var(--color-fg-subtle)]">
+              {group.title}
+            </h4>
+            <ul class="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li class="rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 text-sm text-[color:var(--color-fg)]">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <hr class="my-16 border-t border-[color:var(--color-border)]" />
+
+  <!-- ============ Contact subsection ============ -->
+  <div id="contact" class="reveal scroll-mt-20">
+    <h3 class="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[color:var(--color-fg)]">
+      Contact
+    </h3>
+    <p class="mt-2 max-w-xl text-sm text-[color:var(--color-fg-muted)]">
+      Looking for a Unity mobile developer? Reach out on any of these.
+    </p>
+
+    {
+      contactLinks.length > 0 ? (
+        <ul class="mt-8 flex flex-wrap gap-4">
+          {contactLinks.map((link) => {
+            const isExternal = !link.href.startsWith("mailto:");
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  class="group inline-flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] text-[color:var(--color-fg-muted)] transition-all hover:-translate-y-0.5 hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-bg)]"
+                  aria-label={link.label}
+                  title={link.label}
+                >
+                  <Icon name={link.icon} size={22} />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p class="mt-8 rounded-lg border border-dashed border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] p-4 text-sm text-[color:var(--color-fg-muted)]">
+          Add your contact URLs to{" "}
+          <code class="rounded bg-[color:var(--color-surface-2)] px-1.5 py-0.5 text-[color:var(--color-fg)]">
+            src/data/contact.ts
+          </code>
+          .
+        </p>
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+import { profile } from "~/data/profile";
+---
+
+<section
+  id="top"
+  class="relative isolate overflow-hidden border-b border-[color:var(--color-border)]"
+>
+  <!-- Grayscale radial gradient backdrop -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 -z-10"
+    style="background: radial-gradient(1200px 500px at 50% -10%, rgba(255,255,255,0.06), transparent 60%), radial-gradient(600px 300px at 90% 10%, rgba(255,255,255,0.03), transparent 60%);"
+  >
+  </div>
+  <!-- Faint SVG noise -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 -z-10 opacity-[0.035]"
+    style='background-image: url("data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>");'
+  >
+  </div>
+
+  <div class="mx-auto flex min-h-[60vh] max-w-6xl flex-col justify-center px-6 py-24 sm:py-32">
+    <p class="reveal font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.2em] text-[color:var(--color-fg-subtle)]">
+      Portfolio
+    </p>
+    <h1
+      class="reveal mt-4 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-[color:var(--color-fg)] sm:text-6xl md:text-7xl"
+    >
+      {profile.name}
+    </h1>
+    <p class="reveal mt-4 max-w-2xl text-lg text-[color:var(--color-fg-muted)] sm:text-xl">
+      {profile.title} &middot; {profile.focus}
+    </p>
+    {
+      profile.tagline && (
+        <p class="reveal mt-6 max-w-2xl text-base text-[color:var(--color-fg-muted)]">
+          {profile.tagline}
+        </p>
+      )
+    }
+    <div class="reveal mt-10 flex flex-wrap items-center gap-3">
+      <a
+        href="#games"
+        class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-accent)] bg-[color:var(--color-accent)] px-5 py-2.5 text-sm font-medium text-[color:var(--color-bg)] transition-colors hover:bg-[color:var(--color-fg)] hover:border-[color:var(--color-fg)]"
+      >
+        View games
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border-strong)] px-5 py-2.5 text-sm font-medium text-[color:var(--color-fg)] transition-colors hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)]"
+      >
+        Get in touch
+      </a>
+    </div>
+  </div>
+</section>

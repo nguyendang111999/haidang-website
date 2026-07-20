@@ -1,0 +1,42 @@
+name: Refresh games metadata
+
+on:
+  schedule:
+    # Every Monday at 03:00 UTC
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    name: Refresh Play Store data
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch latest Play Store metadata
+        run: npm run games:fetch
+
+      - name: Create pull request if changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore(data): refresh games metadata'
+          title: 'chore(data): refresh games metadata'
+          body: |
+            Automated weekly refresh of `src/data/games.generated.json` and
+            `public/games/*.png` from the Google Play store.
+          branch: chore/refresh-games
+          delete-branch: true
+          labels: data-refresh

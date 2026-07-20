@@ -1,0 +1,96 @@
+---
+import type { Game } from "~/data/game";
+
+interface Props {
+  game: Game;
+}
+
+const { game } = Astro.props;
+
+const scoreText = typeof game.score === "number" ? game.score.toFixed(1) : null;
+---
+
+<a
+  href={game.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group relative flex flex-col rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-surface-2)] focus-visible:-translate-y-1 focus-visible:border-[color:var(--color-accent)]"
+  aria-label={`${game.title} on Google Play`}
+>
+  <!-- Icon -->
+  <div class="relative aspect-square w-full overflow-hidden rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]">
+    <img
+      src={game.iconPath}
+      alt={`${game.title} icon`}
+      loading="lazy"
+      decoding="async"
+      width="512"
+      height="512"
+      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+    />
+  </div>
+
+  <!-- Body -->
+  <div class="mt-5 flex flex-1 flex-col">
+    <h3
+      class="font-[family-name:var(--font-display)] text-base font-semibold tracking-tight text-[color:var(--color-fg)] line-clamp-1"
+      title={game.title}
+    >
+      {game.title}
+    </h3>
+
+    {
+      game.role && (
+        <p class="mt-1 text-xs text-[color:var(--color-fg-subtle)]">{game.role}</p>
+      )
+    }
+
+    <div class="mt-3 flex flex-wrap items-center gap-2">
+      {
+        game.genre && (
+          <span class="rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-2.5 py-0.5 text-xs text-[color:var(--color-fg-muted)]">
+            {game.genre}
+          </span>
+        )
+      }
+      {
+        game.installs && (
+          <span class="rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-2.5 py-0.5 text-xs text-[color:var(--color-fg-muted)]">
+            {game.installs} installs
+          </span>
+        )
+      }
+    </div>
+
+    <div class="mt-auto flex items-center justify-between pt-4">
+      {
+        scoreText ? (
+          <span class="inline-flex items-center gap-1 text-xs text-[color:var(--color-fg-muted)]">
+            <span aria-hidden="true">★</span>
+            <span>{scoreText}</span>
+            {game.ratings && (
+              <span class="text-[color:var(--color-fg-subtle)]">
+                ({game.ratings.toLocaleString()})
+              </span>
+            )}
+          </span>
+        ) : (
+          <span />
+        )
+      }
+      <span
+        class="text-xs font-medium text-[color:var(--color-fg-subtle)] transition-colors group-hover:text-[color:var(--color-accent)]"
+      >
+        Play Store &rarr;
+      </span>
+    </div>
+
+    {
+      game.highlight && (
+        <p class="mt-3 text-xs text-[color:var(--color-fg-muted)] italic">
+          &ldquo;{game.highlight}&rdquo;
+        </p>
+      )
+    }
+  </div>
+</a>
