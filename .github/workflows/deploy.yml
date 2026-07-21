@@ -42,10 +42,14 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          # Hostinger's FTP account is chrooted to /public_html, so `./` here
-          # already means the web root. Using `./public_html/` would nest the
-          # site inside /public_html/public_html/ where Apache can't serve it.
-          server-dir: ./
+          # Hostinger's FTP account root is ABOVE public_html (contains a
+          # `DO_NOT_UPLOAD_HERE` marker file), so the docroot is /public_html/.
+          server-dir: ./public_html/
+          # TEMPORARY: wipe the target folder and do a fresh full upload to
+          # clear the stale sync-state file left by earlier misconfigured
+          # deploys. After the next successful deploy, remove this line so
+          # subsequent runs only sync changed files.
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**
