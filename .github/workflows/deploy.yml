@@ -42,7 +42,10 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          server-dir: ./public_html/
+          # Hostinger's FTP account is chrooted to /public_html, so `./` here
+          # already means the web root. Using `./public_html/` would nest the
+          # site inside /public_html/public_html/ where Apache can't serve it.
+          server-dir: ./
           exclude: |
             **/.git*
             **/.git*/**
