@@ -54,9 +54,10 @@ const contactLinks: {
   key: keyof typeof contact;
   label: string;
   href: string;
-  icon: "mail" | "linkedin" | "github" | "itchio";
+  icon: "mail" | "facebook" | "linkedin" | "github" | "itchio";
 }[] = [
-  { key: "email", label: "Email", href: contact.email ? `mailto:${contact.email}` : "", icon: "mail" },
+  { key: "email", label: contact.email || "Email", href: contact.email ? `mailto:${contact.email}` : "", icon: "mail" },
+  { key: "facebook", label: "Facebook", href: contact.facebook, icon: "facebook" },
   { key: "linkedin", label: "LinkedIn", href: contact.linkedin, icon: "linkedin" },
   { key: "github", label: "GitHub", href: contact.github, icon: "github" },
   { key: "itchio", label: "itch.io", href: contact.itchio, icon: "itchio" },
@@ -168,14 +169,16 @@ const initials = profile.name
       contactLinks.length > 0 ? (
         <ul class="mt-8 flex flex-wrap gap-4">
           {contactLinks.map((link) => {
-            const isExternal = !link.href.startsWith("mailto:");
+            const isMail = link.href.startsWith("mailto:");
+            const isExternal = !isMail;
             return (
               <li>
                 <a
                   href={link.href}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
-                  class="group inline-flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] text-[color:var(--color-fg-muted)] transition-all hover:-translate-y-0.5 hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-bg)]"
+                  data-copy-email={isMail ? contact.email : undefined}
+                  class="group relative inline-flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] text-[color:var(--color-fg-muted)] transition-all hover:-translate-y-0.5 hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-bg)]"
                   aria-label={link.label}
                   title={link.label}
                 >
@@ -197,3 +200,46 @@ const initials = profile.name
     }
   </div>
 </section>
+
+<div
+  id="copy-toast"
+  role="status"
+  aria-live="polite"
+  class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full border border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] px-4 py-2 text-sm text-[color:var(--color-fg)] opacity-0 shadow-lg transition-opacity duration-200 data-[visible=true]:opacity-100"
+>
+  Email copied to clipboard
+</div>
+
+<script>
+  // Progressive enhancement: clicking the email button copies the address to
+  // the clipboard AND still triggers the default `mailto:` behavior. If no
+  // mail client is registered (common on Windows), the user at least gets the
+  // email address on their clipboard and a visible confirmation.
+  const toast = document.getElementById("copy-toast");
+  let toastTimer: number | undefined;
+
+  function showToast(msg: string) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.dataset.visible = "true";
+    if (toastTimer) window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      delete toast.dataset.visible;
+    }, 2000);
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>("a[data-copy-email]").forEach((a) => {
+    a.addEventListener("click", async (e) => {
+      const email = a.dataset.copyEmail;
+      if (!email) return;
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(email);
+          showToast(`Copied ${email}`);
+        }
+      } catch {
+        // Ignore — mailto: still fires as the default action.
+      }
+    });
+  });
+</script>

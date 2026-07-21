@@ -4,8 +4,9 @@
  */
 
 export const contact = {
-  email: "", // e.g. "hai@haidang.space"
-  linkedin: "", // e.g. "https://www.linkedin.com/in/haidang"
+  email: "haidang.gamedev@gmail.com", // e.g. "hai@haidang.space"
+  facebook: "https://www.facebook.com/the.kingdom.752/", // e.g. "https://www.facebook.com/haidang"
+  linkedin: "https://www.linkedin.com/in/dang-nguyen-94279a268", // e.g. "https://www.linkedin.com/in/haidang"
   github: "", // e.g. "https://github.com/haidang"
   itchio: "", // e.g. "https://haidang.itch.io"
 } as const;
