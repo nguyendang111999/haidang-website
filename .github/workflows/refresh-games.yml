@@ -24,7 +24,8 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        # See deploy.yml for why we use `npm install` instead of `npm ci`.
+        run: npm install --no-audit --no-fund
 
       - name: Fetch latest Play Store metadata
         run: npm run games:fetch
