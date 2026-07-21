@@ -83,12 +83,22 @@ const initials = profile.name
   <!-- ============ Bio subsection ============ -->
   <div class="reveal grid grid-cols-1 gap-10 md:grid-cols-[240px_1fr]">
     <div class="flex flex-col items-start gap-4">
-      <div
-        class="flex h-40 w-40 items-center justify-center rounded-full border border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] font-[family-name:var(--font-display)] text-4xl font-semibold text-[color:var(--color-fg-muted)]"
-        aria-label={`Avatar placeholder for ${profile.name}`}
-      >
-        {initials || "?"}
-      </div>
+      {profile.avatar ? (
+        <img
+          src={profile.avatar}
+          alt={`Profile photo of ${profile.name}`}
+          width={160}
+          height={160}
+          class="h-40 w-40 rounded-full border border-[color:var(--color-border-strong)] object-cover"
+        />
+      ) : (
+        <div
+          class="flex h-40 w-40 items-center justify-center rounded-full border border-[color:var(--color-border-strong)] bg-[color:var(--color-surface)] font-[family-name:var(--font-display)] text-4xl font-semibold text-[color:var(--color-fg-muted)]"
+          aria-label={`Avatar placeholder for ${profile.name}`}
+        >
+          {initials || "?"}
+        </div>
+      )}
       <div>
         <p class="font-[family-name:var(--font-display)] text-xl font-semibold text-[color:var(--color-fg)]">
           {profile.name}

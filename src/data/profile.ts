@@ -11,6 +11,13 @@ export const profile = {
   location: "", // e.g. "Ho Chi Minh City, Vietnam"
   availability: "Open to opportunities",
 
+  /**
+   * Path to your profile photo relative to `src/`.
+   * e.g. "../assets/avatar.png" — put the file in src/assets/
+   * Leave as empty string to show the initials placeholder.
+   */
+  avatar: "/IMG_0940-removebg.png", // e.g. "/profile.jpg" (place the file in public/) or use Astro image import
+
   /** One-line tagline shown under the hero heading. */
   tagline: "Shipping puzzle & hyper-casual games on Google Play — prototype fast, ship faster.",
 
