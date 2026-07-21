@@ -47,7 +47,7 @@ jobs:
           # If you switch to an FTP user whose home is ABOVE public_html
           # (e.g. one that shows a `DO_NOT_UPLOAD_HERE` marker at login),
           # change this to `./public_html/`.
-          server-dir: ./
+          server-dir: ./public_html/
           # TEMPORARY: wipe the target folder and do a fresh full upload to
           # clear the stale sync-state file left by earlier misconfigured
           # deploys. After the next successful deploy, remove this line so
