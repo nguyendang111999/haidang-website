@@ -52,7 +52,7 @@ jobs:
           # clear the stale sync-state file left by earlier misconfigured
           # deploys. After the next successful deploy, remove this line so
           # subsequent runs only sync changed files.
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
