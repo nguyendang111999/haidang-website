@@ -25,4 +25,12 @@ export const games: GameSource[] = [
   // TODO: replace these placeholders with your 8 Play Store app IDs.
   // Example:
   // { appId: "com.example.puzzle1", role: "Solo developer", tags: ["Puzzle"] },
+  { appId: "ttg.woodscrew.puzzle.wood.nuts.bolts", role: "Unity Developer", tags: ["Puzzle"] },
+  { appId: "com.no1.blockgemm.puzzle", role: "Unity developer", tags: ["Puzzle"] },
+  { appId: "com.number.screw.jam.nuts.bolts.master.puzzle", role: "Unity Developer", tags: ["Puzzle"] },
+  { appId: "com.relaxing.puzzle.color.dot.connect.em.all", role: "Unity developer", tags: ["Puzzle"] },
+  { appId: "com.fc.p.tt.knit.craze.color.puzzle", role: "Unity developer", tags: ["Puzzle"] },
+  { appId: "ttg.rescue.save.princess.dragon.out.puzzle", role: "Unity developer", tags: ["Puzzle"] },
+  { appId: "lumi.fuit.pop.blast.cube.color.puzzle", role: "Support Unity developer", tags: ["Puzzle"] },
+  { appId: "lumi.untape.away.jam.logic.game3d.puzzle", role: "Support Unity developer", tags: ["Puzzle"] },
 ];

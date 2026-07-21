@@ -110,7 +110,7 @@ async function main() {
   for (const entry of source) {
     const { appId, role, tags, highlight } = entry;
     try {
-      const data = await gp.app({ appId, throttle: 2 });
+      const data = await gp.app({ appId, country: "vn", lang: "en", throttle: 2 });
       const iconPath = await downloadIcon(data.icon, appId);
       const game = {
         appId,

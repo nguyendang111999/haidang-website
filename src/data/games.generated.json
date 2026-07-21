@@ -1,1 +1,146 @@
-[]
+[
+  {
+    "appId": "ttg.woodscrew.puzzle.wood.nuts.bolts",
+    "title": "Wooden Screw: Nuts and Bolts",
+    "iconPath": "/games/ttg.woodscrew.puzzle.wood.nuts.bolts.png",
+    "url": "https://play.google.com/store/apps/details?id=ttg.woodscrew.puzzle.wood.nuts.bolts&hl=en&gl=vn",
+    "genre": "Puzzle",
+    "installs": "500,000+",
+    "minInstalls": 500000,
+    "score": 4.1666665,
+    "ratings": 3138,
+    "summary": "Test IQ with our wood nuts &amp; bolts and master wooden puzzle",
+    "role": "Unity Developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T09:48:46.068Z"
+  },
+  {
+    "appId": "com.no1.blockgemm.puzzle",
+    "title": "Block Jewel: Puzzle Temple",
+    "iconPath": "/games/com.no1.blockgemm.puzzle.png",
+    "url": "https://play.google.com/store/apps/details?id=com.no1.blockgemm.puzzle&hl=en&gl=vn",
+    "genre": "Puzzle",
+    "installs": "50,000+",
+    "minInstalls": 50000,
+    "score": 5,
+    "ratings": 1265,
+    "summary": "Solving block puzzles and Exploring jewels in ancient temples!",
+    "role": "Unity developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T09:48:46.395Z"
+  },
+  {
+    "appId": "com.number.screw.jam.nuts.bolts.master.puzzle",
+    "title": "Unscrew Em All - Screw Puzzle",
+    "iconPath": "/games/com.number.screw.jam.nuts.bolts.master.puzzle.png",
+    "url": "https://play.google.com/store/apps/details?id=com.number.screw.jam.nuts.bolts.master.puzzle&hl=en&gl=vn",
+    "genre": "Puzzle",
+    "installs": "100,000+",
+    "minInstalls": 100000,
+    "score": 4.285714,
+    "ratings": 529,
+    "summary": "Find the right twist! Master the correct order to unscrew and triumph!",
+    "role": "Unity Developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T09:48:47.641Z"
+  },
+  {
+    "appId": "com.relaxing.puzzle.color.dot.connect.em.all",
+    "title": "Color Dots: Connect Em All",
+    "iconPath": "https://play-lh.googleusercontent.com/e5oZkcKiSKQCTkwIijWSxCShgWmKWkNB6t307WPb9vvQhz1B5A5jrX1m3vGanpSs2wdYGfICLsalETOcbYk11g=w240-h480-rw",
+    "url": "https://play.google.com/store/apps/details?id=com.relaxing.puzzle.color.dot.connect.em.all",
+    "genre": "Puzzle",
+    "installs": "100,000+",
+    "minInstalls": 100000,
+    "score": 4,
+    "ratings": 1352,
+    "summary": "…",
+    "role": "Unity developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T00:00:00.000Z"
+  },
+  {
+    "appId": "com.fc.p.tt.knit.craze.color.puzzle",
+    "title": "Knit Craze: Wool Jam Challenge",
+    "iconPath": "/games/com.fc.p.tt.knit.craze.color.puzzle.png",
+    "url": "https://play.google.com/store/apps/details?id=com.fc.p.tt.knit.craze.color.puzzle&hl=en&gl=vn",
+    "genre": "Puzzle",
+    "installs": "100,000+",
+    "minInstalls": 100000,
+    "score": null,
+    "ratings": null,
+    "summary": "Dive into the delightful world of yarn and untangling challenge with Knit Craze!",
+    "role": "Unity developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T09:48:49.132Z"
+  },
+  {
+    "appId": "ttg.rescue.save.princess.dragon.out.puzzle",
+    "title": "Rescue Princess: Dragon Maze",
+    "iconPath": "/games/ttg.rescue.save.princess.dragon.out.puzzle.png",
+    "url": "https://play.google.com/store/apps/details?id=ttg.rescue.save.princess.dragon.out.puzzle&hl=en&gl=vn",
+    "genre": "Casual",
+    "installs": "10,000+",
+    "minInstalls": 10000,
+    "score": null,
+    "ratings": null,
+    "summary": "Save the girl from the dragon attacks!",
+    "role": "Unity developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T09:48:49.369Z"
+  },
+  {
+    "appId": "lumi.fuit.pop.blast.cube.color.puzzle",
+    "title": "Fruity Cube: Pop Blast",
+    "iconPath": "/games/lumi.fuit.pop.blast.cube.color.puzzle.png",
+    "url": "https://play.google.com/store/apps/details?id=lumi.fuit.pop.blast.cube.color.puzzle&hl=en&gl=vn",
+    "genre": "Puzzle",
+    "installs": "5,000+",
+    "minInstalls": 5000,
+    "score": null,
+    "ratings": null,
+    "summary": "Pop the fruity cubes! Shoot &amp; blast your way to master this color puzzle game!",
+    "role": "Support Unity developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T09:48:50.644Z"
+  },
+  {
+    "appId": "lumi.untape.away.jam.logic.game3d.puzzle",
+    "title": "Untape Away - 3D Puzzle",
+    "iconPath": "/games/lumi.untape.away.jam.logic.game3d.puzzle.png",
+    "url": "https://play.google.com/store/apps/details?id=lumi.untape.away.jam.logic.game3d.puzzle&hl=en&gl=vn",
+    "genre": "Puzzle",
+    "installs": "1,000+",
+    "minInstalls": 1000,
+    "score": null,
+    "ratings": null,
+    "summary": "Peel the tape, solve 3D puzzles, and enjoy the ultimate ASMR sorting fun!",
+    "role": "Support Unity developer",
+    "tags": [
+      "Puzzle"
+    ],
+    "highlight": null,
+    "fetchedAt": "2026-07-21T09:48:50.941Z"
+  }
+]
