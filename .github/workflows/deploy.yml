@@ -42,17 +42,8 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          # This Hostinger FTP account lands directly inside `public_html/`
-          # (its home directory IS the web docroot), so upload to `./`.
-          # If you switch to an FTP user whose home is ABOVE public_html
-          # (e.g. one that shows a `DO_NOT_UPLOAD_HERE` marker at login),
-          # change this to `./public_html/`.
           server-dir: ./
-          # TEMPORARY: wipe the target folder and do a fresh full upload to
-          # clear the stale sync-state file left by earlier misconfigured
-          # deploys. After the next successful deploy, remove this line so
-          # subsequent runs only sync changed files.
-          dangerous-clean-slate: false
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**
