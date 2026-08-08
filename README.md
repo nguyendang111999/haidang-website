@@ -34,18 +34,21 @@ npm run dev            # http://localhost:4321
 
 ## Deployment
 
-Push to `main` → GitHub Actions builds the site and FTPs `dist/` into
-Hostinger's `public_html/`.
+Push to `main` → GitHub Actions builds the site and publishes `dist/` to
+GitHub Pages, served at the custom domain `haidang.space`.
 
-Required GitHub secrets (Settings → Secrets and variables → Actions):
+The custom domain is set via `public/CNAME` (copied into `dist/` on build)
+and confirmed in **Settings → Pages → Custom domain**. DNS for the domain
+is managed in Hostinger's DNS Zone Editor (registrar only — hosting has
+moved off Hostinger):
 
-| Secret         | Value                                        |
-| -------------- | -------------------------------------------- |
-| `FTP_SERVER`   | Hostinger FTP host (e.g. `ftp.haidang.space`) |
-| `FTP_USER`     | FTP account username                         |
-| `FTP_PASSWORD` | FTP account password                         |
-
-Find these in hPanel → **Files → FTP Accounts**.
+| Type | Name | Content                        |
+| ---- | ---- | ------------------------------- |
+| A    | @    | `185.199.108.153`               |
+| A    | @    | `185.199.109.153`               |
+| A    | @    | `185.199.110.153`                |
+| A    | @    | `185.199.111.153`                |
+| CNAME | www | `nguyendang111999.github.io`   |
 
 A weekly workflow (`.github/workflows/refresh-games.yml`) opens a PR
 refreshing install counts and ratings automatically.
