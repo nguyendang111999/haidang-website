@@ -1,18 +1,21 @@
-name: Deploy to Hostinger
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-# Prevent concurrent deploys stepping on each other.
 concurrency:
-  group: deploy-${{ github.ref }}
+  group: pages
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build-and-deploy:
-    name: Build and deploy
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,26 +28,23 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        # Using `npm install` (not `npm ci`) because platform-optional deps
-        # like `@tailwindcss/oxide-wasm32-wasi` cause lockfile mismatches
-        # when the lockfile is generated on Windows and consumed on Linux.
         run: npm install --no-audit --no-fund
 
       - name: Build site
         run: npm run build
 
-      - name: Deploy to Hostinger over FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          local-dir: ./dist/
-          server-dir: ./
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
