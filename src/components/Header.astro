@@ -2,16 +2,17 @@
 import { profile } from "~/data/profile";
 
 const navLinks = [
-  { href: "#games", label: "Games" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#games", label: "Games" },
+  { href: "/#about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/#contact", label: "Contact" },
 ];
 ---
 
 <header class="sticky top-0 z-40 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/70 backdrop-blur-md">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <a
-      href="#top"
+      href="/#top"
       class="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)] transition-colors"
     >
       {profile.name.toLowerCase().replace(/\s+/g, "")}

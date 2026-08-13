@@ -7,6 +7,12 @@ export default defineConfig({
   site: 'https://haidang.space',
   output: 'static',
   integrations: [sitemap()],
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: false,
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },
