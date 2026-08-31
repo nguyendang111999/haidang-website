@@ -8,14 +8,14 @@
     "installs": "500,000+",
     "minInstalls": 500000,
     "score": 4.1666665,
-    "ratings": 3138,
+    "ratings": 3307,
     "summary": "Test IQ with our wood nuts &amp; bolts and master wooden puzzle",
     "role": "Unity Developer",
     "tags": [
       "Puzzle"
     ],
     "highlight": null,
-    "fetchedAt": "2026-07-21T09:48:46.068Z"
+    "fetchedAt": "2026-08-31T03:05:06.643Z"
   },
   {
     "appId": "com.no1.blockgemm.puzzle",
@@ -44,14 +44,14 @@
     "installs": "100,000+",
     "minInstalls": 100000,
     "score": 4.285714,
-    "ratings": 529,
+    "ratings": 538,
     "summary": "Find the right twist! Master the correct order to unscrew and triumph!",
     "role": "Unity Developer",
     "tags": [
       "Puzzle"
     ],
     "highlight": null,
-    "fetchedAt": "2026-07-21T09:48:47.641Z"
+    "fetchedAt": "2026-08-31T03:05:07.994Z"
   },
   {
     "appId": "com.relaxing.puzzle.color.dot.connect.em.all",
@@ -87,7 +87,7 @@
       "Puzzle"
     ],
     "highlight": null,
-    "fetchedAt": "2026-07-21T09:48:49.132Z"
+    "fetchedAt": "2026-08-31T03:05:09.267Z"
   },
   {
     "appId": "ttg.rescue.save.princess.dragon.out.puzzle",
@@ -105,7 +105,7 @@
       "Puzzle"
     ],
     "highlight": null,
-    "fetchedAt": "2026-07-21T09:48:49.369Z"
+    "fetchedAt": "2026-08-31T03:05:09.680Z"
   },
   {
     "appId": "lumi.fuit.pop.blast.cube.color.puzzle",
@@ -123,7 +123,7 @@
       "Puzzle"
     ],
     "highlight": null,
-    "fetchedAt": "2026-07-21T09:48:50.644Z"
+    "fetchedAt": "2026-08-31T03:05:10.918Z"
   },
   {
     "appId": "lumi.untape.away.jam.logic.game3d.puzzle",
@@ -141,6 +141,6 @@
       "Puzzle"
     ],
     "highlight": null,
-    "fetchedAt": "2026-07-21T09:48:50.941Z"
+    "fetchedAt": "2026-08-31T03:05:11.223Z"
   }
 ]
